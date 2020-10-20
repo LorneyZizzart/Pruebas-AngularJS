@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html ng-app="MyFirstApp">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        .animation{
+            opacity: 1;
+            overflow: hidden;
+            transition: all 5s;
+        }
+
+        .animation.ng-hide{
+            opacity: 0;
+            max-width: 0px !important;
+            display: block !important;
+        }
+    </style>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.0/angular.min.js"></script>
+    <script src="controller.js"></script>
+</head>
+<body ng-Controller="FirsController">
+
+    <input type="text" ng-model="newPost.title"><br>
+    <input type="text" ng-model="newPost.body"><br>
+    <button ng-click="addPost()">Save</button>
+    <!-- <ul ng-hide="posts.length != 0" class="animation"> -->
+      <div ng-show="loading"> Cargando ..</div>  
+      <div ng-show="!loading && posts.length == 0"> No se encontraron resultado</div>  
+    <ul ng-show="posts.length > 0" class="animation">
+        <li ng-repeat="post in posts">
+            <h2>{{post.title}}</h2>
+            <p>{{post.body}}</p>
+        </li>
+    </ul>
+</body>
+</html>
